@@ -1,0 +1,7 @@
+server.port=8081
+
+spring.mvc.view.prefix=/WEB-INF/page/
+spring.mvc.view.suffix=.jsp
+
+sso.server.address=localhost
+sso.server.port=8080

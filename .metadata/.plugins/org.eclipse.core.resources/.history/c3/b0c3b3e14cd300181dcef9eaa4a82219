@@ -1,0 +1,15 @@
+package com.sso.oa;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class IndexController {
+
+	public String index(HttpServletRequest request,HttpServletResponse response){
+		
+		return "index";
+	}
+}

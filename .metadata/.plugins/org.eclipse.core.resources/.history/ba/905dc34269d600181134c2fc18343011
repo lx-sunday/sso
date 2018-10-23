@@ -1,0 +1,28 @@
+package com.sso.oa.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sso.oa.utils.HttpClientUtil;
+
+@Controller
+public class IndexController {
+
+	@RequestMapping("/index")
+	public String index(){
+		
+		return "index";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response){
+		//删除本地session
+		
+		//删除认证中心的cookie与redis缓存
+		HttpClientUtil.doGet("Http://localhost:8080/logout");
+		return "redirect:/index";
+	}
+}

@@ -1,0 +1,51 @@
+package com.sso.oa.interceptor;
+
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.sso.oa.utils.CookieUtils;
+import com.sso.oa.utils.HttpClientUtil;
+import com.sso.oa.vo.SSOUserVo;
+
+public class LoginInterceptor implements HandlerInterceptor {
+
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		// TODO Auto-generated method stub
+		//cookie中查找用户凭证token
+		String token = CookieUtils.getCookieValue(request, "TOKEN");
+		if(StringUtils.isNotEmpty(token)){ //用户凭证存在，则调用远程调用认证中心，得到当前登录用户
+			SSOUserVo uservo = HttpClientUtil.doGet("Http://localhost:8080/token/"+token);
+			if(uservo!=null){
+				return true;
+			}
+		}
+		//重定向到认证中心的登录首页
+		response.sendRedirect("Http://localhost:8080/page/login.jsp?redirect="+request.getRequestURL().toString());
+		return false;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

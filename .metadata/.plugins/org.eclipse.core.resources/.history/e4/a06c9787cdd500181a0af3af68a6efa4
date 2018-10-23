@@ -1,0 +1,12 @@
+package com.sso.oa.vo;
+
+import java.io.Serializable;
+
+public class SSOUserVo implements Serializable {
+
+	private Long id;
+	
+	private String appkey;
+	
+	private String password;
+}

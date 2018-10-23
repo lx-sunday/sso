@@ -1,0 +1,5 @@
+package com.sso.oa.vo;
+
+public class SSoUserVo {
+
+}

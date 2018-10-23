@@ -1,0 +1,7 @@
+server.port=8081
+server.context-path=/sso-oa
+
+logging.
+
+spring.mvc.view.prefix=/WEB-INF/page/
+spring.mvc.view.suffix=.jsp

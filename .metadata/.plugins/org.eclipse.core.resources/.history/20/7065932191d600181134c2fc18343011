@@ -1,0 +1,21 @@
+package com.sso.pro.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class IndexController {
+	
+	@Value("${sso.server.address}")
+	private String ssoAddress;
+	
+	@Value("${sso.server.port}")
+	private String ssoPort;
+
+	@RequestMapping(value="/index")
+	public String index(){
+		
+		return "index";
+	}
+}

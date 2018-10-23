@@ -1,0 +1,5 @@
+package com.sso.oa.interceptor;
+
+public class LoginInterceptor {
+
+}
